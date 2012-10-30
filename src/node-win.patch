@@ -1,0 +1,49 @@
+Index: util/build/main.js
+===================================================================
+--- util/build/main.js	(revision 28648)
++++ util/build/main.js	(working copy)
+@@ -48,8 +48,7 @@
+ 			util.debug(inspect ? util.inspect(it, false, depth) : it);
+ 		};
+ 
+-		// TODO: make this real
+-		has.add("is-windows", 0);
++		has.add("is-windows", /win/.test(process.platform));
+ 	}else if(has("host-rhino")){
+ 		define("commandLineArgs", [], function(){
+ 			var result = [];
+Index: util/build/transforms/writeOptimized.js
+===================================================================
+--- util/build/transforms/writeOptimized.js	(revision 28648)
++++ util/build/transforms/writeOptimized.js	(working copy)
+@@ -167,8 +167,10 @@
+ 			runJava, //function, defined later
+ 			oldSendJob = sendJob, //preserves reference if sendJob is replaced
+ 			child_process = require.nodeRequire("child_process"),
+-			javaClasses = fileUtils.catPath(buildRoot, "closureCompiler/compiler.jar") + ":" + fileUtils.catPath(buildRoot, "shrinksafe/js.jar") + ":" + fileUtils.catPath(buildRoot, "shrinksafe/shrinksafe.jar");
+-			if(global.process.platform === 'cygwin'){
++			isCygwin = global.process.platform === 'cygwin';
++			separator = has("is-windows") && !isCygwin ? ";" : ":";
++			javaClasses = fileUtils.catPath(buildRoot, "closureCompiler/compiler.jar") + separator + fileUtils.catPath(buildRoot, "shrinksafe/js.jar") + separator + fileUtils.catPath(buildRoot, "shrinksafe/shrinksafe.jar");
++			if(isCygwin){
+ 				//assume we're working with Windows Java, and need to translate paths
+ 				runJava = function(cb){
+ 					child_process.exec("cygpath -wp '" + javaClasses + "'", function(err, stdout){
+@@ -188,6 +190,17 @@
+ 						});
+ 					});
+ 				};
++			}else if(has("is-windows")){
++				runJava = function(cb){
++					javaClasses = fileUtils.normalize(javaClasses);
++					optimizerRunner = fileUtils.normalize(optimizerRunner);
++					cb();
++				}
++				sendJob = function(src, dest, optimizeSwitch, copyright){
++					var wsrc = fileUtils.normalize(src);
++					var wdest = fileUtils.normalize(dest);
++					oldSendJob(wsrc, wdest, optimizeSwitch, copyright);
++				};
+ 			}else{
+ 				//no waiting necessary, pass through
+ 				runJava = function(cb) { cb(); };

@@ -77,7 +77,7 @@ var profile = {
 		// to roll everything into a single layer, but this helps provide a basic illustration of multi-layer builds.)
 		// Note that when you create a new layer, the module referenced by the layer is always included in the layer
 		// (in this case, `app/Dialog`), so it does not need to be explicitly defined in the `include` array.
-		'app/Dialog': {}
+		'app/ApplicationController': {}
 	},
 
 	// Providing hints to the build system allows code to be conditionally removed on a more granular level than

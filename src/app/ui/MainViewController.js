@@ -4,7 +4,7 @@ define([
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
   
-  "dojo/text!./templates/MainView.html",
+  "dojo/text!./templates/MainView.html"
 
 ], function(
   declare,
