@@ -12,3 +12,13 @@ To make build process work via node.js on Windows you need to apply [`node-win.p
 
     patch -p0 < node-win.patch
 
+## Stylesheets via less
+Build script `build.sh` compiles `less` sources to `css`:
+    
+    lessc *.less > *.css
+
+It depends on `lessc`, intall it via:
+
+    npm install -g less
+
+Currently I do not use client side `less` compilation in debug/development mode, because I compile on-the-fly via [SimpLESS](http://wearekiss.com/simpless)([GitHub](https://github.com/paratron/SimpLESS/)).
