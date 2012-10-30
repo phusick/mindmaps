@@ -1,2 +1,7 @@
-@import '../../dojo/resources/dojo.css';@import '../../dijit/themes/claro/claro.css';
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+@import '../../dojo/resources/dojo.css';
+
+@import '../../dijit/themes/claro/claro.css';
+html,
+body {
+  height: 100%;
+}
