@@ -8,7 +8,8 @@ define([
   
   // template widgets
   "dijit/layout/BorderContainer",
-  "dijit/layout/ContentPane"
+  "dijit/layout/ContentPane",
+  "./ToolbarView"
 ], function(
   declare,
   _Widget,
@@ -20,7 +21,11 @@ define([
 
 var ViewController = declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
 
-  templateString: template
+  templateString: template,
+  
+  constructor: function(args) {
+    declare.safeMixin(this. args);
+  }
   
   // init all presenters
   // canvas

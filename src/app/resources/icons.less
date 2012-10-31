@@ -1,0 +1,21 @@
+@iconPath: 'icons/';
+@iconExtension: '.png';
+
+.toolbarIcon (@iconFilename: 'dummy') {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  @url: '@{iconPath}@{iconFilename}@{iconExtension}';
+  background-image:  url(@url);
+}
+
+
+.addNodeIcon { .toolbarIcon('node-add'); }
+.deleteNodeIcon { .toolbarIcon('node-delete'); }
+
+.undoIcon { .toolbarIcon('undo'); }
+.redoIcon { .toolbarIcon('redo'); }
+
+.cutIcon { .toolbarIcon('cut'); }
+.copyIcon { .toolbarIcon('copy'); }
+.pasteIcon { .toolbarIcon('paste'); }
