@@ -1,9 +1,7 @@
 define([
-  "dojo/_base/declare",
-  "app/command/commands"
+  "dojo/_base/declare"
 ], function(
-  declare,
-  commands
+  declare
 ) {
 
 var ToolbarPresenter = declare(null, {
@@ -18,7 +16,7 @@ var ToolbarPresenter = declare(null, {
     
     var nodeCommands = [
       registry.get("CreateNodeCommand"),
-      registry.get("DeleteNodeCommand"),
+      registry.get("DeleteNodeCommand")
     ];
     this.view.addButtonGroup(nodeCommands);
     

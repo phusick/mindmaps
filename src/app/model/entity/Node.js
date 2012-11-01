@@ -1,7 +1,7 @@
 define([
   "dojo/_base/declare",
   "./Point",
-  "./NodeMap"
+  "../NodeMap"
 ], function(
   declare,
   Point,

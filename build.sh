@@ -24,7 +24,7 @@ LOADERCONF="$SRCDIR/$LOADERMID.js"
 PROFILE="$BASEDIR/profiles/app.profile.js"
 
 # Build lesscss files
-lessc $SRCDIR/app/resources/*.less > $SRCDIR/app/resources/*.css
+#lessc $SRCDIR/app/resources/*.less > $SRCDIR/app/resources/*.css
 
 # Configuration over. Main application start up!
 

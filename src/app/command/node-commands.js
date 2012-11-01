@@ -1,6 +1,5 @@
 define([], {
 
-  // Node Commands
   CreateNodeCommand: {
     id: "CREATE_NODE_COMMAND",
     shortcut: "tab",
@@ -15,13 +14,6 @@ define([], {
     label: "Delete",
     icon: "deleteNodeIcon",
     description: "Deletes a node"
-  },
-  
-  // Documents Commands
-  NewDocumentCommand: {
-    id: "NEW_DOCUMENT_COMMAND",
-    label: "New",
-    description: "Start working on a new mind map"    
   }
   
 });

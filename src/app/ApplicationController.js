@@ -1,11 +1,15 @@
 define([
   "dojo/_base/declare",
   "app/command/CommandRegistry",
-  "app/ui/MainViewController"
+  "app/ui/MainViewController",
+  "app/command/document-commands",
+  "app/command/node-commands"
 ], function(
   declare,
   CommandRegistry,
-  MainViewController
+  MainViewController,
+  documentCommands,
+  nodeCommands
 ) {
 
   function doNewDocument() {
@@ -21,6 +25,8 @@ define([
      */    
     constructor: function() {
       this.commandRegistry = new CommandRegistry();
+      this.commandRegistry.declare(nodeCommands);
+      this.commandRegistry.declare(documentCommands);
       this.init();
     },
     
