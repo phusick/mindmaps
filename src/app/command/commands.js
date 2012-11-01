@@ -5,7 +5,7 @@ define([], {
     id: "CREATE_NODE_COMMAND",
     shortcut: "tab",
     label: "Add",
-    icon: "node-add",
+    icon: "addNodeIcon",
     description: "Creates a new node"
   },
 
@@ -13,7 +13,7 @@ define([], {
     id: "DELETE_NODE_COMMAND",
     shortcut: ["del", "backspace"],
     label: "Delete",
-    icon: "node-delete",
+    icon: "deleteNodeIcon",
     description: "Deletes a node"
   },
   

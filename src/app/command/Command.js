@@ -1,10 +1,12 @@
 define([
-  "dojo/_base/declare"
+  "dojo/_base/declare",
+  "dojo/Evented"
 ], function(
-  declare
+  declare,
+  Evented
 ) {
 
-  var Command = declare(null, {
+  var Command = declare(Evented, {
     
     /**
      * Creates a new command. Base class for all commands.
@@ -35,6 +37,7 @@ define([
      * Executes the command. Tries to call the handler function.
      */
     execute: function() {
+      console.log("Command executed [" + this.id + "]");
       if (this.handler) {
         this.handler();
       }
@@ -66,7 +69,7 @@ define([
      */
     setEnabled: function(enabled) {
       this.enabled = enabled;
-      // TODO: fire `Command.Event.ENABLED_CHANGED` via dojo/topic || dojo/Evented
+      this.emit(Command.Event.ENABLED_CHANGED, enabled);
     }
     
   });
