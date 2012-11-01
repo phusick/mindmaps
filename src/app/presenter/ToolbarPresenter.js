@@ -16,7 +16,7 @@ var ToolbarPresenter = declare(null, {
     
     var nodeCommands = [
       registry.get("CreateNodeCommand"),
-      registry.get("DeleteNodeCommand"),
+      registry.get("DeleteNodeCommand")
     ];
     this.view.addButtonGroup(nodeCommands);
     
