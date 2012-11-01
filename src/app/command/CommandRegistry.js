@@ -1,11 +1,9 @@
 define([
   "dojo/_base/declare",
-  "./Command",
-  "./commands"
+  "./Command"
 ], function(
   declare,
-  Command,
-  commands
+  Command
 ) {
 
   var CommandRegistry = declare(null, {
@@ -16,6 +14,7 @@ define([
      * @contructor
      */
     constructor: function() {
+      this.declarations = {};
       this.commands = {};
       // TODO: implement shortcutController as in the original
     },
@@ -29,8 +28,10 @@ define([
     get: function(commandType) {
       var command = this.commands[commandType];
       if (!command) {
-        if (!commands[commandType]) { throw new Error(""); }
-        command = new Command(commands[commandType]);
+        if (!this.declarations[commandType]) {
+          throw new Error("Command does not exist [" + commandType + "]");
+        }
+        command = new Command(this.declarations[commandType]);
       }
       return command;
     },
@@ -46,6 +47,14 @@ define([
       if (!command) { return; } 
       
       delete this.commands[commandType];
+    },
+    
+    declare: function(/*Object*/ object) {
+      for (var each in object) {
+        if (object.hasOwnProperty(each)) {
+          this.declarations[each] = object[each];
+        }
+      }
     }
     
   });
