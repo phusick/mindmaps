@@ -31,7 +31,7 @@ define([
         if (!this.declarations[commandType]) {
           throw new Error("Command does not exist [" + commandType + "]");
         }
-        command = new Command(this.declarations[commandType]);
+        command = this.commands[commandType] = new Command(this.declarations[commandType]);
       }
       return command;
     },
