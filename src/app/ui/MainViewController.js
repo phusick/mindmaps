@@ -1,12 +1,13 @@
 define([
   "dojo/_base/declare",
-  "dijit/_Widget",
+  "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
   "dojo/text!./templates/MainView.html",
   
   // 
   "app/presenter/ToolbarPresenter",
+  "app/view/DefaultCanvasView",
   
   // template widgets
   "dijit/layout/BorderContainer",
@@ -14,15 +15,16 @@ define([
   "app/view/ToolbarView"
 ], function(
   declare,
-  _Widget,
+  _WidgetBase,
   _TemplatedMixin,
   _WidgetsInTemplateMixin,
   template,
   
-  ToolbarPresenter
+  ToolbarPresenter,
+  CanvasView
 ) {
 
-var ViewController = declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
+var ViewController = declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
 
   templateString: template,
   
@@ -35,10 +37,16 @@ var ViewController = declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin]
       view: this.toolbar,
       commandRegistry: this.commandRegistry
     });
+    
+    
+    
+    var canvasView = new CanvasView({});
+    canvasView.startup();
+    
+    this.centerRegion.addChild(canvasView);
   }
   
   // init all presenters
-  // canvas
   // statusbar
   // floating panels
   // inspector
