@@ -1,7 +1,7 @@
 define([
   "dojo/_base/declare",
   "./Point",
-  "../NodeMap"
+  "./NodeMap"
 ], function(
   declare,
   Point,
@@ -10,6 +10,11 @@ define([
 
   var Node = declare(null, {
     
+    /**
+     * Creates a new node.
+     * 
+     * @contructor
+     */
     constructor: function() {
       this.id = 0; // TODO: implement mindmaps.Util.getId();
       this.parent = null;

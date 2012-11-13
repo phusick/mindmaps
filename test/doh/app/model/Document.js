@@ -1,19 +1,16 @@
 define([
   "doh/runner",
-  "test/sinon",
+  "test/_util/sinon",
+  "test/_util/TestGroup",
   "app/model/Document"
 ], function(
   doh,
   sinon,
+  TestGroup,
   Document
 ) {
-
-  var tests = [];
-  var it = function(name, runTest) {
-    var test = { name: name, runTest: runTest };
-    tests.push(test);
-    return test;
-  }
+ 
+  var it = (new TestGroup("Document")).getFixture();
 
   it("should get a unique id", function() {
     var doc1 = new Document();
@@ -57,10 +54,4 @@ define([
     doh.t(restored.isAutosave());
   });
   
-
-  doh.register("Document", tests,
-    function() { /* group setUp*/ },
-    function() { /* group tearDown */ }
-  );
-
 });
