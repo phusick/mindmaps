@@ -1,11 +1,13 @@
 define([
   "dojo/_base/declare",
   "./Point",
-  "./NodeMap"
+  "./NodeMap",
+  "./util"
 ], function(
   declare,
   Point,
-  NodeMap
+  NodeMap,
+  util
 ) {
 
   var Node = declare(null, {
@@ -16,7 +18,7 @@ define([
      * @contructor
      */
     constructor: function() {
-      this.id = 0; // TODO: implement mindmaps.Util.getId();
+      this.id = util.createUUID();
       this.parent = null;
       this.children = new NodeMap();
       this.text = {
@@ -35,6 +37,14 @@ define([
     },
     
     /**
+     *
+     */
+    addChild: function(node) {
+      node.parent = this;
+      this.children.add(node);
+    },
+    
+    /**
      * Creates a deep copy of this node, where all nodes have a new IDs
      * 
      * @returns {Node} the cloned node
@@ -45,6 +55,24 @@ define([
         caption: this.text.caption
       };
       
+    },
+
+    /**
+     * Gets the caption for the node.
+     * 
+     * @returns {String}
+     */
+    getCaption: function() {
+      return this.text.caption;
+    },
+    
+    /**
+     * Sets the caption for the node
+     * 
+     * @param {String} caption
+     */
+    setCaption: function(caption) {
+      this.text.caption = caption;
     }
     
   });
