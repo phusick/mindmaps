@@ -15,7 +15,6 @@ define([
       this.autoRegister = true;
       this.tests = [];
       declare.safeMixin(this, props);
-      //return this;
     },
     
     getFixture: function() {

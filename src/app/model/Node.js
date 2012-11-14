@@ -32,6 +32,19 @@ define([
       this.offset = new Point();
       this.foldChildren = false;
       this.branchColor = "#000000";
+    },
+    
+    /**
+     * Creates a deep copy of this node, where all nodes have a new IDs
+     * 
+     * @returns {Node} the cloned node
+     */
+    clone: function() {
+      var clone = new Node();
+      var text = {
+        caption: this.text.caption
+      };
+      
     }
     
   });
