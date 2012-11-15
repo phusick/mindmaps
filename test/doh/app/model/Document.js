@@ -38,7 +38,7 @@ define([
   
   it("should serialize and restore", function() {
     var doc = new Document();
-    var json = doc.serialize(); console.log(json);
+    var json = doc.serialize();
     var restored = Document.fromJSON(json);
     
     doh.t(restored instanceof Document);
