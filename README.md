@@ -8,7 +8,7 @@ The [MindMaps](https://github.com/drichard/mindmaps) project rewritten to Dojo T
 ## Build
 Run `build.sh` script, deploy the content of `dist` directory.
 
-To make build process work via node.js on Windows you need to apply [`node-win.patch`](http://bugs.dojotoolkit.org/ticket/15413):
+To make build process work via node.js on Windows (instead of Rhino) you need to apply [`node-win.patch`](http://bugs.dojotoolkit.org/ticket/15413):
 
     patch -p0 < node-win.patch
 

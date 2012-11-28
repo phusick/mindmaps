@@ -1,20 +1,16 @@
 define([
   "doh/runner",
-  "test/sinon",
+  "test/_util/sinon",
+  "test/_util/TestGroup",
   "app/command/Command"
 ], function(
   doh,
   sinon,
+  TestGroup,
   Command
 ) {
 
-  var tests = [];
-  var it = function(name, runTest) {
-    var test = { name: name, runTest: runTest };
-    tests.push(test);
-    return test;
-  }
-
+  var it = new TestGroup("Command").getFixture();
 
   it("should call a handler when executed", function() {
     var command = new Command();
@@ -42,10 +38,5 @@ define([
     command.setEnabled(true);
     doh.assertTrue(callback.calledWith(true));
   });
-  
-  doh.register("Command", tests,
-    function() { /* group setUp*/ },
-    function() { /* group tearDown */ }
-  );
-  
+    
 });

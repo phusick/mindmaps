@@ -1,25 +1,21 @@
 define([
   "doh/runner",
-  "test/sinon",
+  "test/_util/sinon",
   "dojo/_base/lang",
+  "test/_util/TestGroup",
   "app/command/Command",
   "app/command/CommandRegistry"
 ], function(
   doh,
   sinon,
   lang,
+  TestGroup,
   Command,
   CommandRegistry
 ) {
 
-  // HACK refactor to some utility module
-  var tests = [];
-  var it = function(name, runTest) {
-    var test = { name: name, runTest: runTest };
-    tests.push(test);
-    return test;
-  }
-
+  var it = new TestGroup("CommandRegistry").getFixture();
+  
   var testCommands = {
     CreateNodeCommand: {
       id: "CREATE_NODE_COMMAND",
@@ -87,11 +83,5 @@ define([
     var command2 = commandRegistry.get("CreateNodeCommand");
     doh.f(command1 === command2);
   });
-  
-  
-  doh.register("CommandRegistry", tests,
-    function() { /* group setUp*/ },
-    function() { /* group tearDown */ }
-  );
   
 });

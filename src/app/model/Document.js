@@ -1,7 +1,7 @@
 define([
   "dojo/_base/declare",
   "dojo/json",
-  "./entity/Point",
+  "./Point",
   "./util"
 ], function(
   declare,
